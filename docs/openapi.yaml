@@ -1,0 +1,976 @@
+openapi: 3.0.3
+
+info:
+  title: Projeto Honeyduke’s
+  description: API destinada ao controle de produtos da doceria
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: brunohaddadalves75@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.4.26
+
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+
+servers:
+  - url: http://localhost:9090
+
+paths:
+
+  /v1/honeydukes/doceria/usuario:
+    post:
+      tags:
+        - Usuário
+      summary: Adiciona um novo usuário
+      description: Endpoint para enviar os dados dos usuário a serem cadastrados
+
+      requestBody:
+        description: JSON contendo os dados do novo usuário
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+
+      responses:
+        '201':
+          description: Usuario cadastrado com sucesso
+
+        '400':
+          description: Invalid input
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    get:
+      tags:
+        - Usuário
+
+      summary: Lista todos os Usuários
+      description: Listagem de todos os usuarios registrados no sistema
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Usuario'
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/usuario/{id}:
+
+    get:
+      tags:
+        - Usuário
+      summary: Busca um usuário pelo ID
+      description: Retorna um usuário pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do usuário
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuário'
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    put:
+      tags:
+        - Usuário
+
+      summary: Atualiza um usuário pelo ID
+      description: Buscar e atualizar um usuário pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para atualizar um usuário
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      requestBody:
+        description: Dados para atualizar um usuário
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Usuário not found
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    delete:
+      tags:
+        - Usuário
+
+      summary: Deletar um usuário existente
+      description: Excluir um usuário
+
+      parameters:
+        - name: id
+          in: path
+          description: ID do usuário
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Doce not found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/doce:
+
+    post:
+      tags:
+        - Doce
+      summary: Adiciona um novo doce
+      description: Endpoint para enviar os dados dos doces a serem cadastrados
+
+      requestBody:
+        description: JSON contendo os dados do novo doce
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doce'
+
+      responses:
+        '201':
+          description: Doce cadastrado com sucesso
+
+        '400':
+          description: Invalid input
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    get:
+      tags:
+        - Doce
+
+      summary: Lista todos os doces
+      description: Listagem de todos os doces registrados no sistema
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Doce'
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/doce/{id}:
+
+    get:
+      tags:
+        - Doce
+
+      summary: Busca um doce pelo ID
+      description: Retorna um doce pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do doce
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doce'
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    put:
+      tags:
+        - Doce
+
+      summary: Atualiza um doce pelo ID
+      description: Buscar e atualizar um doce pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para atualizar um doce
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      requestBody:
+        description: Dados para atualizar um doce
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doce'
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Doce not found
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    delete:
+      tags:
+        - Doce
+
+      summary: Deletar um doce existente
+      description: Excluir um doce
+
+      parameters:
+        - name: id
+          in: path
+          description: ID do doce
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Doce not found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+          
+  /v1/honeydukes/doceria/sabor:
+
+    post:
+      tags:
+        - Sabor
+      summary: Adiciona um novo sabor de doce
+      description: Endpoint para enviar os dados dos sabor a serem cadastrados
+
+      requestBody:
+        description: JSON contendo os dados do novo sabor
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sabor'
+
+      responses:
+        '201':
+          description: Doce cadastrado com sucesso
+
+        '400':
+          description: Invalid input
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+    get:
+      tags:
+        - Sabor
+
+      summary: Lista todos os sabores
+      description: Listagem de todos os sabores registrados no sistema
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Sabor'
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/sabor/{id}:
+
+    get:
+      tags:
+        - Sabor
+
+      summary: Busca um sabor pelo ID
+      description: Retorna um sabor pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do sabor
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sabor'
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    put:
+      tags:
+        - Sabor
+
+      summary: Atualiza um sabor pelo ID
+      description: Buscar e atualizar um sabor pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para atualizar um sabor
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      requestBody:
+        description: Dados para atualizar um sabor
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sabor'
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Sabor not found
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    delete:
+      tags:
+        - Sabor
+
+      summary: Deletar um sabor existente
+      description: Excluir um sabor
+
+      parameters:
+        - name: id
+          in: path
+          description: ID do sabor
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Sabor not found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/categoria:
+
+    post:
+      tags:
+        - Categoria
+      summary: Adiciona uma nova categoria de doce
+      description: Endpoint para enviar os dados das categorias a serem cadastrados
+
+      requestBody:
+        description: JSON contendo os dados de uma nova categoria
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+
+      responses:
+        '201':
+          description: Categoria cadastrada com sucesso
+
+        '400':
+          description: Invalid input
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+    get:
+      tags:
+        - Categoria
+
+      summary: Lista todas as categorias
+      description: Listagem de todas as categorias registradas no sistema
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Categoria'
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+      
+  /v1/honeydukes/doceria/categoria/{id}:
+
+    get:
+      tags:
+        - Categoria
+
+      summary: Busca uma categoria pelo ID
+      description: Retorna uma categoria pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do sabor
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    put:
+      tags:
+        - Categoria
+
+      summary: Atualiza uma categoria pelo ID
+      description: Buscar e atualizar uma categoria pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para atualizar uma categoria
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      requestBody:
+        description: Dados para atualizar uma categoria
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Categoria not found
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    delete:
+      tags:
+        - Categoria
+
+      summary: Deletar uma categoria existente
+      description: Excluir uma categoria
+
+      parameters:
+        - name: id
+          in: path
+          description: ID da categoria
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Categoria not found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+  /v1/honeydukes/doceria/status:
+
+    post:
+      tags:
+        - Status
+      summary: Adiciona um novo status de doce
+      description: Endpoint para enviar os dados dos status a serem cadastrados
+
+      requestBody:
+        description: JSON contendo os dados de um novo status
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+
+      responses:
+        '201':
+          description: Status cadastrada com sucesso
+
+        '400':
+          description: Invalid input
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+    get:
+      tags:
+        - Status
+
+      summary: Lista todos os status
+      description: Listagem de todos os status registradas no sistema
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Status'
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+      
+  /v1/honeydukes/doceria/status/{id}:
+
+    get:
+      tags:
+        - Status
+
+      summary: Busca um status pelo ID
+      description: Retorna um status pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do status
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Not Found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    put:
+      tags:
+        - Status
+
+      summary: Atualiza um status pelo ID
+      description: Buscar e atualizar um status pelo ID
+
+      parameters:
+        - name: id
+          in: path
+          description: ID para atualizar um status
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      requestBody:
+        description: Dados para atualizar um status
+        required: true
+
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Status not found
+
+        '415':
+          description: Invalid Content-Type
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+    delete:
+      tags:
+        - Status
+
+      summary: Deletar um status existente
+      description: Excluir um status
+
+      parameters:
+        - name: id
+          in: path
+          description: ID do status
+          required: true
+
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: Successful operation
+
+        '400':
+          description: Invalid ID supplied
+
+        '404':
+          description: Status not found
+
+        '500':
+          description: Error Internal Server (Controller / Model)
+
+components:
+
+  schemas:
+    Usuario:
+      type: object
+
+      required:
+        - nome
+        - email
+        - senha
+      properties:
+
+        id:
+          type: integer
+          example: 1
+
+        nome:
+          type: string
+          example: Bruno
+
+        email:
+          type: string
+          example: brunohaddadalves75@gmail.com
+
+        senha:
+          type: string
+          example: bruno234
+
+    Doce:
+      type: object
+
+      required:
+        - nome
+        - valor
+        - descricao
+        - avaliacao
+        - id_categoria
+
+      properties:
+
+        id:
+          type: integer
+          example: 1
+
+        nome:
+          type: string
+          example: Doce de Goiaba
+
+        valor:
+          type: number
+          example: 15.99
+
+        descricao:
+          type: string
+          example: "Doce sabor goiaba, com recheio cremoso e irresistível"
+
+        avaliacao:
+          type: number
+          format: float
+          example: 5.00
+
+        id_categoria:
+          type: number
+          example: 1
+
+    Sabor:
+       type: object
+
+       required:
+        - nome
+
+       properties:
+
+        id:
+          type: integer
+          example: 1
+
+        nome:
+          type: string
+          example: Chocolate
+
+    Categoria:
+       type: object
+
+       required:
+        - categoria
+
+       properties:
+
+        id:
+          type: integer
+          example: 1
+
+        categoria:
+          type: string
+          example: 1
+
+    Status:
+          type: object
+
+     
+          required:
+             - status
+     
+          properties:
+     
+            id:
+               type: integer
+               example: 1
+     
+            status:
+               type: string
+               example: Ativo
+
+  requestBodies:
+
+    Doce:
+      description: Objeto que deve ser enviado no body das requisições
+
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Doce'
+    Sabor:
+      description: Objeto que deve ser enviado no body das requisições
+
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Sabor'
+    Categoria:
+      description: Objeto que deve ser enviado no body das requisições
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Categoria'
+
+
+    
