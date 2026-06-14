@@ -29,10 +29,9 @@ app.use("/v1/honeyducks/doceria/doce", cors(), doceRouter)
 
 
 
-const PORT = process.env.PORT || 7070;
+app.listen(7070, function(){
+    console.log("API aguardando novas requisições..............")
+})
 
-app.listen(PORT, "0.0.0.0", function () {
-    console.log("API aguardando novas requisições na porta " + PORT);
-});
 
 
