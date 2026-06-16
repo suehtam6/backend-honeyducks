@@ -35,6 +35,12 @@ const ERROR_INTERNAL_SERVER_MODEL = {
     message: "Não foi possível processar a requisição devido a um erro interno no servidor [MODEL]"
 }
 
+const ERROR_TOKEN_CREATION = {
+    status: false,
+    status_code: 500,
+    message: "Erro ao gerar token"
+}
+
 const ERROR_INTERNAL_SERVER_MODEL_USER = {
     status: false,
     status_code: 500,
@@ -126,6 +132,7 @@ module.exports = {
     SUCESS_UPDATE_ITEM,
     SUCCESS_DELETED_ITEM,
     ERROR_CONTENT_TYPE,
+    ERROR_TOKEN_CREATION,
     ERROR_INTERNAL_SERVER_MODEL_USER,
     ERROR_INTERNAL_SERVER_MODEL_CATEGORIA,
     ERROR_INTERNAL_SERVER_MODEL_SABOR,

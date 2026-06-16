@@ -12,6 +12,24 @@ const bodyParserJson = bodyParser.json()
 const controllerUser = require("../controller/user/controller_user.js")
 
 
+const verifyJWT = async function(request, response, next){
+
+    //Receb o token encaminhado no header da requisição
+    let token = request.headers['x-access-token']
+
+    //Biblioteca para validação do token
+    const jwt = require("../middleware/jwt.js")
+
+    const autentic = await jwt.validateJWT(token)
+
+    //Verifica se a requisição podera continuar ou se será encerrada
+    if(autentic)
+        next()
+    else
+        return response.status(401).end()
+}
+
+
 router.post("/", bodyParserJson, async function(request, response) {
 
     let dados = request.body
@@ -23,7 +41,7 @@ router.post("/", bodyParserJson, async function(request, response) {
     
 })
 
-router.get("/", async function (request, response) {
+router.get("/", verifyJWT , async function (request, response) {
     let result = await controllerUser.listarUsuario()
 
     response.status(result.status_code)

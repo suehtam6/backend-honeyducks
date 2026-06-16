@@ -12,6 +12,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+
+//RECEBER O TOKEN ENCAMINHADO NAS REQUISIÇÕES E SOLICITAR A VALIDAÇÃO
+
+
 const userRouter = require("././routes/user.router.js")
 app.use("/v1/honeyducks/doceria/usuario", cors(), userRouter)
 

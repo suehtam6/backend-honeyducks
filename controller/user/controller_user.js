@@ -24,32 +24,46 @@ const validarDados = async function(user){
 }
 
 
-const autenticarUsuario = async function (dados) {
+const autenticarUsuario = async function (dados, contentType) {
 
     let customMessage = JSON.parse(JSON.stringify(configMessages))
 
     try {
+
+    if(String(contentType).toUpperCase() == "APPLICATION/JSON"){
+
         const result = await userDAO.selectAuthByPassword(dados)
 
-        if(result && result.length > 0){
+        if(result){
 
+
+            //Import da biblioteca que gera e valida a autenticidade do JWT
             const jwt = require("../../middleware/jwt.js")
 
-            let usuario = result[0]
+            let usuario = {}
 
-            let tokenUser = await jwt.creatJWT(usuario.id)
+            let tokenUser = await jwt.creatJWT(result.id)
+            
+            usuario.id = result.id
+            usuario.emai = result.email
+
+            //Adiciona chave no JSON com token do usuário
             usuario.token = tokenUser
 
             customMessage.DEFAULT_MESSAGE.status = customMessage.SUCCESS_RESPONSE.status
             customMessage.DEFAULT_MESSAGE.status_code = customMessage.SUCCESS_RESPONSE.status_code
             customMessage.DEFAULT_MESSAGE.count = result.length
-            customMessage.DEFAULT_MESSAGE.response.user = result
+            customMessage.DEFAULT_MESSAGE.response.user = usuario
 
             return customMessage.DEFAULT_MESSAGE
 
         } else {
-            return customMessage.ERROR_NOT_FOUND
+            return customMessage.ERROR_TOKEN_CREATION
         }
+    }
+    else{
+        return customMessage.ERROR_CONTENT_TYPE
+    }
 
     } catch (error) {
         console.log(error)

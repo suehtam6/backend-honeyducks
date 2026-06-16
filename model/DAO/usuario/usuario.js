@@ -128,10 +128,12 @@ const selectAuthByPassword = async function(dados) {
         `
 
         let result = await knexConection.raw(sql)
-        console.log(result)
 
-        if(Array.isArray(result))
-            return result[0]
+        if(Array.isArray(result)){
+           return result[0][0]
+        }
+             
+        
         else
             return false
 

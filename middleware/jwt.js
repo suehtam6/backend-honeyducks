@@ -10,7 +10,7 @@
 //Import da biblioteca JWT
 const jwt = require('jsonwebtoken')
 const SECRET = "bruno130508"
-const  EXPIRES= 60
+const  EXPIRES = 360
 
 //Criação do JWT (Retorna um token)
 const creatJWT = async function (payLoad) {
@@ -34,9 +34,9 @@ const validateJWT = async function (token) {
     jwt.verify(token, SECRET, async function (err, decode) {
         if(!err)
             status = true
-
-        return status
     })
+
+    return status
 
 }
 
