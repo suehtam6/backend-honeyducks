@@ -24,6 +24,40 @@ const validarDados = async function(user){
 }
 
 
+const autenticarUsuario = async function (dados) {
+
+    let customMessage = JSON.parse(JSON.stringify(configMessages))
+
+    try {
+        const result = await userDAO.selectAuthByPassword(dados)
+
+        if(result && result.length > 0){
+
+            const jwt = require("../../middleware/jwt.js")
+
+            let usuario = result[0]
+
+            let tokenUser = await jwt.creatJWT(usuario.id)
+            usuario.token = tokenUser
+
+            customMessage.DEFAULT_MESSAGE.status = customMessage.SUCCESS_RESPONSE.status
+            customMessage.DEFAULT_MESSAGE.status_code = customMessage.SUCCESS_RESPONSE.status_code
+            customMessage.DEFAULT_MESSAGE.count = result.length
+            customMessage.DEFAULT_MESSAGE.response.user = result
+
+            return customMessage.DEFAULT_MESSAGE
+
+        } else {
+            return customMessage.ERROR_NOT_FOUND
+        }
+
+    } catch (error) {
+        console.log(error)
+        return customMessage.ERROR_INTERNAL_SERVER_CONTROLLER
+    }
+}
+
+
 
 
 
@@ -233,7 +267,8 @@ module.exports = {
     listarUsuario,
     buscarUsuario,
     atualizarUsuario,
-    deletarUsuario
+    deletarUsuario,
+    autenticarUsuario
 
 
 }

@@ -30,6 +30,18 @@ router.get("/", async function (request, response) {
     response.json(result)
 })
 
+router.post("/login", bodyParserJson, async function(request, response) {
+
+    let dados = request.body
+    let contentType = request.headers["content-type"]
+
+    let result = await controllerUser.autenticarUsuario(dados, contentType)
+
+    response.status(result.status_code)
+    response.json(result)
+    
+})
+
 
 router.get("/:id", async function(request, response) {
     // Recebe o id do usuario via parametro

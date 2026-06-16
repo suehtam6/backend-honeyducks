@@ -116,11 +116,40 @@ const deleteUser = async function(id){
 }
 
 
+const selectAuthByPassword = async function(dados) {
+
+    try {
+
+        let sql = `
+            SELECT *
+            FROM tbl_usuario
+            WHERE email = '${dados.email}'
+            AND senha = '${dados.senha}'
+        `
+
+        let result = await knexConection.raw(sql)
+        console.log(result)
+
+        if(Array.isArray(result))
+            return result[0]
+        else
+            return false
+
+    } catch (error) {
+
+        return false
+
+    }
+}
+
+
+
 
 module.exports = {
     insertUser,
     selectAllUser,
     selectUserById,
+    selectAuthByPassword,
     updateUser,
-    deleteUser
+    deleteUser,
 }
