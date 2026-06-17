@@ -5,37 +5,29 @@ const bodyParserJson = bodyParser.json()
 const app = express()
 
 const corsOptions = {
-    origin: ["*"], // Configuração de origem da requisição (IP ou Dominio)
-    methods: "GET, POST, PUT, DELETE, OPTIONS",  // Configuração dos verbos que serão utilizados na API
+    origin: "*", // ✅ string simples
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
     allowedHeaders: ['Content-type', "Authorization"]
 }
 
 app.use(cors(corsOptions))
-
-
-//RECEBER O TOKEN ENCAMINHADO NAS REQUISIÇÕES E SOLICITAR A VALIDAÇÃO
-
+app.use(bodyParserJson)
 
 const userRouter = require("././routes/user.router.js")
-app.use("/v1/honeyducks/doceria/usuario", cors(), userRouter)
+app.use("/v1/honeyducks/doceria/usuario", userRouter)
 
 const categoriaRouter = require("././routes/categoria.router.js")
-app.use("/v1/honeyducks/doceria/categoria", cors(), categoriaRouter)
+app.use("/v1/honeyducks/doceria/categoria", categoriaRouter)
 
 const saborRouter = require("././routes/sabor.router.js")
-app.use("/v1/honeyducks/doceria/sabor", cors(), saborRouter)
+app.use("/v1/honeyducks/doceria/sabor", saborRouter)
 
 const statusRouter = require("././routes/status.router.js")
-app.use("/v1/honeyducks/doceria/status", cors(), statusRouter)
+app.use("/v1/honeyducks/doceria/status", statusRouter)
 
 const doceRouter = require("././routes/doce.router.js")
-app.use("/v1/honeyducks/doceria/doce", cors(), doceRouter)
-
-
+app.use("/v1/honeyducks/doceria/doce", doceRouter)
 
 app.listen(7070, function(){
     console.log("API aguardando novas requisições..............")
 })
-
-
-
