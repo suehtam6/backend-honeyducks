@@ -3,9 +3,12 @@ module.exports = {
       // ⚠️ ALTERAÇÃO: Define o cliente como 'mysql2'
       client: 'mysql2',
       connection: {
-        host: 'doceira.mysql.database.azure.com',
-        user: 'honeyDukes', // Substitua pelo seu usuário
-        password: 'Suehtam6', // Substitua pela sua senha
+        // host: 'doceira.mysql.database.azure.com',
+        // user: 'honeyDukes', // Substitua pelo seu usuário
+        // password: 'Suehtam6', // Substitua pela sua senha
+        host: 'localhost',
+        user: 'root', // Substitua pelo seu usuário
+        password: 'bcd127', // Substitua pela sua senha
         database: 'db_doceria',
         port: 3306, // Porta padrão do MySQL
        
