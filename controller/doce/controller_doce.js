@@ -556,14 +556,10 @@ const excluirDoce = async function (id) {
 
 //Função para tratar os dados a serem inseridos
 const tratarDados = async function (doce) {
-
-    doce.nome = doce.nome.replaceAll("'", "")
-    doce.valor = doce.valor.replaceAll("'", "")
-    doce.descricao = doce.descricao.replaceAll("'", "")
-    doce.avaliacao = doce.avaliacao.replaceAll("'", "")
-
-    
-
+    doce.nome = String(doce.nome).replaceAll("'", "")
+    doce.valor = String(doce.valor).replaceAll("'", "")
+    doce.descricao = String(doce.descricao).replaceAll("'", "")
+    doce.avaliacao = String(doce.avaliacao).replaceAll("'", "")
     return doce
     
 }
