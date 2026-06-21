@@ -3,9 +3,15 @@ module.exports = {
       // ⚠️ ALTERAÇÃO: Define o cliente como 'mysql2'
       client: 'mysql2',
       connection: {
+        // PARA UTILIZAR A API NA NUVEM
         host: 'doceira.mysql.database.azure.com',
         user: 'honeyDukes', // Substitua pelo seu usuário
         password: 'Suehtam6', // Substitua pela sua senha
+
+        //PARA UTILIZAR A API LOCAL
+        // host: 'localhost',
+        // user: 'root', // Substitua pelo seu usuário
+        // password: 'bcd127', // Substitua pela sua senha
         database: 'db_doceria',
         port: 3306, // Porta padrão do MySQL
        

@@ -5,13 +5,12 @@ const bodyParserJson = bodyParser.json()
 const app = express()
 
 const corsOptions = {
-    origin: "*", // ✅ string simples
+    origin: "*",
     methods: "GET, POST, PUT, DELETE, OPTIONS",
     allowedHeaders: ['Content-type', "Authorization"]
 }
 
 app.use(cors(corsOptions))
-app.use(bodyParserJson)
 
 const userRouter = require("././routes/user.router.js")
 app.use("/v1/honeyducks/doceria/usuario", userRouter)

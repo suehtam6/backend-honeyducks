@@ -900,6 +900,13 @@ components:
           type: number
           example: 1
 
+        id_sabor:
+          type: number
+          example: [
+            id : 1,
+            id : 2
+          ]
+
     Sabor:
        type: object
 
