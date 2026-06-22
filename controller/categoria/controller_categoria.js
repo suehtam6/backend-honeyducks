@@ -75,7 +75,7 @@ try {
             customMessage.DEFAULT_MESSAGE.status = customMessage.SUCCESS_RESPONSE.status
             customMessage.DEFAULT_MESSAGE.status_code = customMessage.SUCCESS_RESPONSE.status_code
             customMessage.DEFAULT_MESSAGE.count = result.length
-            customMessage.DEFAULT_MESSAGE.response.status = result
+            customMessage.DEFAULT_MESSAGE.response.categoria = result
 
             return customMessage.DEFAULT_MESSAGE
         }else{
