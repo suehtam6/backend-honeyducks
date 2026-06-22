@@ -61,31 +61,19 @@ router.post("/login", bodyParserJson, async function(request, response) {
 })
 
 
-router.get("/:id", async function(request, response) {
-    // Recebe o id do usuario via parametro
+router.get("/:id", verifyJWT, async function(request, response) {
     let id = request.params.id
-
-    // Recebendo o body da requisição
     let result = await controllerUser.buscarUsuario(id)
     
     response.status(result.status_code)
     response.json(result)
-
-
 })
 
 
-router.put('/:id', bodyParserJson, async function (request, response) {
-
-    // Recebe o content-type da requisição para validar se é JSON
+router.put('/:id', verifyJWT, bodyParserJson, async function (request, response) {
     let contentType = request.headers['content-type']
-    // Recebe o ID do registro a ser atualizado
     let id = request.params.id
-    // Recebe os dados do body que serão modificados no BD
     let dados  = request.body
-
-    //Chama a função para atualizar o usuário , devemos encaminhar as 3 variaveis na mesma sequencia
-    // que a função foi criada na controller
 
     let result = await controllerUser.atualizarUsuario(dados, id, contentType)
 
@@ -94,15 +82,13 @@ router.put('/:id', bodyParserJson, async function (request, response) {
 })
 
 
-router.delete("/:id", async function(request, response) {
-
+router.delete("/:id", verifyJWT, async function(request, response) {
     let id = request.params.id
     
     let result = await controllerUser.deletarUsuario(id)
 
     response.status(result.status_code)
     response.json(result)
-    
 })
 
 

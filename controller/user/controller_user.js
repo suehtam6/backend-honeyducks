@@ -45,7 +45,7 @@ const autenticarUsuario = async function (dados, contentType) {
             let tokenUser = await jwt.creatJWT(result.id)
             
             usuario.id = result.id
-            usuario.emai = result.email
+            usuario.email = result.email
 
             //Adiciona chave no JSON com token do usuário
             usuario.token = tokenUser

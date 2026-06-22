@@ -110,7 +110,7 @@ const buscarSabor = async function(id) {
 
                     customMessage.DEFAULT_MESSAGE.status_code = customMessage.SUCCESS_RESPONSE.status_code
 
-                    customMessage.DEFAULT_MESSAGE. response.sabor = result
+                    customMessage.DEFAULT_MESSAGE.response.sabor = result
 
                     return customMessage.DEFAULT_MESSAGE
                 }else{
