@@ -44,7 +44,7 @@ const validarDados =  async function(doce){
         customMessage.ERROR_BAD_REQUEST.field = "[DESCRICAO] INVÁLIDO"
         return customMessage.ERROR_BAD_REQUEST
 
-    } else if (doce.avaliacao == undefined || doce.avaliacao == ""  ||  doce.avaliacao.length > 4){
+    } else if (doce.avaliacao == undefined ||  doce.avaliacao.length > 4){
         customMessage.ERROR_BAD_REQUEST.field = "[AVALIACAO] INVÁLIDO"
         return customMessage.ERROR_BAD_REQUEST
 

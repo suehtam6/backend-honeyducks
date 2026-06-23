@@ -69,7 +69,7 @@ const updateDoce = async function (doce) {
         let sql = `update tbl_doce set 
 	nome = '${doce.nome}',
     valor = '${doce.valor}',
-    imagem = ${doce.imagem},
+    imagem = '${doce.imagem}',
     descricao = '${doce.descricao}',
     avaliacao = if('${doce.avaliacao}' = " ", null, '${doce.avaliacao}'),
     id_categoria = ${doce.id_categoria},
